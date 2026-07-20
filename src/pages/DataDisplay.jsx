@@ -3,9 +3,12 @@ export default function DataDisplay() {
 
     return (
         <>
-            <section>
-                
-            </section>
+            <div>
+                <section>
+
+                </section>
+            </div>
+           
         </>
     );
 }
