@@ -1,0 +1,7 @@
+GET https://my.api.mockaroo.com/users.json?key=f321d440
+###
+
+GET https://uselessfacts.jsph.pl/api/v2/facts/random
+
+###
+GET https://test-c5483-default-rtdb.firebaseio.com
