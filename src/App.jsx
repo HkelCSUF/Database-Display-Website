@@ -1,10 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { } from "react"
+import { useEffect } from "react"
 import { getMockarooData, getUselessFact } from "./api.js"
+
+const fact = getUselessFact();
+// Deal with mock stuff later. also do a better format for the fact API.
 
 export default function App() {
 
-    const fact = await getUselessFact();
+    
     console.log(fact);
 
     return (
