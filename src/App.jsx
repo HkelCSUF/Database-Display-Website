@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { getMockarooData, getUselessFact } from "./api.js"
 
 const fact = getUselessFact();
-// Deal with mock stuff later. also do a better format for the fact API.
+// Deal with mock stuff later. also do a better format for the fact API. 
 
 export default function App() {
 
