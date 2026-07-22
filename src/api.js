@@ -1,3 +1,14 @@
+// Firebase
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, get } from "firebase/database";
+import { firebaseConfig } from "./components/firebaseDB"
+
+
+const app = initializeApp(firebaseConfig);
+
+const dbRef = ref(getDatabase());
+
+// API Links
 const mockaroo = "https://my.api.mockaroo.com/users.json?key=";
 const uselessfact = "https://uselessfacts.jsph.pl/api/v2/facts/random";
 
@@ -27,4 +38,17 @@ export async function getUselessFact() {
 
     return fact.text;
 
+}
+
+export async function getFirebaseDB() {
+    get(dbRef).then((snapshot) => {
+        if(snapshot.exists()) {
+            console.log(snapshot.val());
+        }
+        else {
+            console.log("Shit I fucked up");
+        }
+    }).catch((error) => {
+        console.error(error);
+    });
 }
