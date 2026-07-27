@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
@@ -18,11 +19,11 @@ export const firebaseConfig = {
 
 
 
-// Get a list of cities from your database, placeholder for shit that I want.
-// async function getCities(db) {
-//   const citiesCol = collection(db, 'cities');
-//   const citySnapshot = await getDocs(citiesCol);
-//   const cityList = citySnapshot.docs.map(doc => doc.data());
-//   return cityList;
-// }
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+
+// TODO: Lab 11 task - add Google sign-in support.
+// Hint: export a provider here.
+export const googleProvider = new GoogleAuthProvider();
 

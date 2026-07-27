@@ -1,7 +1,7 @@
 // Firebase
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, get } from "firebase/database";
-import { firebaseConfig } from "./components/firebaseDB"
+import { firebaseConfig } from "./hooks/firebase"
 
 
 const app = initializeApp(firebaseConfig);
@@ -9,7 +9,7 @@ const app = initializeApp(firebaseConfig);
 const dbRef = ref(getDatabase());
 
 // API Links
-const mockaroo = "https://my.api.mockaroo.com/users.json?key=";
+const mockaroo = "https://my.api.mockaroo.com/";
 const uselessfact = "https://uselessfacts.jsph.pl/api/v2/facts/random";
 
 function getMockarooApiKey() {
@@ -17,10 +17,10 @@ function getMockarooApiKey() {
     return apiKey;
 }
 
-export async function getMockarooData() {
+export async function getMockarooData(table) {
 
     const apiKey = getMockarooApiKey();
-    const url = `${mockaroo}${apiKey}`;
+    const url = `${mockaroo}${table}.json?key=${apiKey}`;
     const response = await fetch(url);
 
     if(!response.ok) {
@@ -28,8 +28,13 @@ export async function getMockarooData() {
     }
 
     const data = await response.json();
+    console.log(data);
+    const retObj = {
+        table: table,
+        data: data
+    }
 
-    return data;
+    return retObj;
 }
 
 export async function getUselessFact() {

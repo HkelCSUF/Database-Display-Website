@@ -1,10 +1,10 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
+import Layout from "./components/Layout";
 // import "./styles.css";
 
 createRoot(document.querySelector("#root")).render(
     <React.StrictMode>
-        <App />
+        <Layout/>
     </React.StrictMode>
 );
