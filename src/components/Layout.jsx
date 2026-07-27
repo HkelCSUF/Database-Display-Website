@@ -1,5 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.jsx";
+import { useState, useEffect } from "react";
+import { getUselessFact } from "../api.js";
 
 export default function Layout({ children }) {
     const { currentUser, logOut } = useAuth();
