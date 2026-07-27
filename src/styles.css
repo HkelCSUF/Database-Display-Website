@@ -1,0 +1,58 @@
+﻿.table-wrapper {
+  padding: 8px;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: #ffffff;
+}
+
+.data-table thead th {
+  text-align: left;
+  padding: 10px 12px;
+  background: #f3f4f6;
+  color: #111827;
+  font-size: 0.875rem;
+  border: 1px solid #222224; /* full cell border */
+  background-clip: padding-box;
+}
+
+.data-table tbody td {
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+  color: #374151;
+  vertical-align: middle;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.data-table tbody tr:hover {
+  background: #f1f5f9;
+}
+
+/* Responsive: stack cells and show header label before each value */
+@media (max-width: 600px) {
+  .data-table thead { display: none; }
+  .data-table, .data-table tbody, .data-table tr, .data-table td { display: block; width: 100%; }
+  .data-table tr { margin-bottom: 12px; padding: 8px; }
+  .data-table td {
+    padding: 6px 8px;
+    border: 1px solid #e5e7eb; /* give each stacked cell its own border */
+    display: flex;
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+  .data-table td::before {
+    content: attr(data-label);
+    flex: 0 0 120px;
+    font-weight: 600;
+    color: #111827;
+    padding-right: 8px;
+  }
+}

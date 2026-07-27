@@ -37,14 +37,11 @@ export default function Collapsible({ title, children }) {
         {/* Content Container */}
         <div style={{ overflow: 'hidden' }}>
           <div style={{ padding: '12px' }}>
-            <ul>
-              {children.map((entry) => (
-                  <Table
-                      key={entry.id}
-                      children={entry}
-                  />
-              ))}
-            </ul>
+            {Array.isArray(children) && children.length ? (
+              <Table data={children} />
+            ) : (
+              <div>No data</div>
+            )}
           </div>
         </div>
       </div>
