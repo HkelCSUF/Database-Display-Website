@@ -121,7 +121,7 @@ export default function LoginPage() {
                     </div>
                 </section>
                 {status && <div className="alert alert-success">{status}</div>}
-                <LastVisited pageName="login" />
+                {/* <LastVisited pageName="login" /> */}
             </>
         );
     }
@@ -219,7 +219,7 @@ export default function LoginPage() {
                     <div className="modal-backdrop show"></div>
                 </>
             )}
-            <LastVisited pageName="login" />
+            {/* <LastVisited pageName="login" /> */}
         </>
     );
 }

@@ -16,8 +16,8 @@ export default function Layout({ children }) {
         <>
             <header className="bg-primary text-white py-5 navbar-theme-color">
                 <div className="container">
-                    <h1>Movies Portal</h1>
-                    <p className="mb-0">Welcome to the React Movies Portal. Explore API data with components and state.</p>
+                    <h1>Database Collections</h1>
+                    <p className="mb-0">Store tables on the cloud.</p>
                 </div>
             </header>
 
