@@ -1,4 +1,53 @@
-﻿.table-wrapper {
+﻿:root {
+    --csuf-blue: #00274c;
+    --csuf-cream: #f9f6ef;
+    --csuf-orange: #ff6600;
+}
+
+body {
+    background: var(--csuf-cream);
+    color: #1f2933;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Collapsible styles moved from DataDisplay.jsx */
+.collapsible {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.collapsible-toggle {
+  width: 100%;
+  padding: 12px;
+  text-align: left;
+  background: #f5f5f5;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+.collapsible-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-out;
+}
+
+.collapsible-panel.open {
+  grid-template-rows: 1fr;
+}
+
+.collapsible-clip {
+  overflow: hidden;
+}
+
+.collapsible-inner {
+  padding: 12px;
+}
+
+.table-wrapper {
   padding: 8px;
   overflow-x: auto;
 }
@@ -34,6 +83,132 @@
 
 .data-table tbody tr:hover {
   background: #f1f5f9;
+}
+
+.api-card-img {
+    height: 300px;
+    object-fit: cover;
+}
+
+.json-output {
+    max-height: 70vh;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+
+.chart-panel {
+    height: 360px;
+}
+
+.placeholder-card {
+    background: repeating-linear-gradient(135deg,
+            #ffffff,
+            #ffffff 18px,
+            #f1f3f5 18px,
+            #f1f3f5 36px);
+    overflow: hidden;
+    position: relative;
+}
+
+/* place-items is equivalent to justify-items and align-items, inset is a shorthand for top, right, bottom, left = 0*/
+/* Font size is scaled with viewport width, which is device width */
+.placeholder-watermark {
+    color: rgba(39, 124, 235, 0.16);
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 800;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    transform: rotate(-12deg);
+    z-index: 0;
+}
+
+.placeholder-card .card-body {
+    position: relative;
+    z-index: 1;
+}
+
+.feedback-history-message {
+    font-style: italic;
+}
+
+footer {
+    background-color: var(--csuf-blue);
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+}
+
+footer p {
+    margin: 0.3rem 0;
+}
+
+footer a {
+    color: #ffd9b5;
+}
+
+.navbar-theme-color {
+    background-color: var(--csuf-blue) !important;
+}
+
+.navbar-theme-color-2 {
+    background-color: var(--csuf-orange) !important;
+}
+
+.auth-card {
+    max-width: 720px;
+    margin-inline: auto;
+}
+
+.auth-mode-toggle {
+    align-self: flex-start;
+}
+
+.auth-nav-button {
+    background: transparent;
+    border: 0;
+    font-weight: inherit;
+}
+
+.google-signin-button {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    color: #3c4043;
+    display: inline-flex;
+    font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    gap: 0.75rem;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0.55rem 1rem;
+}
+
+.google-signin-button:hover {
+    background: #f8fafd;
+    border-color: #d2e3fc;
+}
+
+.google-signin-button:focus-visible {
+    outline: 3px solid rgba(66, 133, 244, 0.35);
+    outline-offset: 2px;
+}
+
+.google-signin-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.google-signin-icon {
+    display: inline-flex;
+    height: 20px;
+    width: 20px;
 }
 
 /* Responsive: stack cells and show header label before each value */

@@ -1,7 +1,7 @@
 // Firebase
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, get } from "firebase/database";
-import { firebaseConfig } from "./hooks/firebase"
+import { firebaseConfig } from "./firebase"
 
 
 const app = initializeApp(firebaseConfig);

@@ -1,10 +1,13 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Layout from "./components/Layout";
+import App from "./App.jsx";
+import { AuthProvider } from "./hooks/useAuth.jsx";
 import "./styles.css";
 
 createRoot(document.querySelector("#root")).render(
     <React.StrictMode>
-        <Layout/>
+        <AuthProvider>
+            <App/>
+        </AuthProvider>
     </React.StrictMode>
 );

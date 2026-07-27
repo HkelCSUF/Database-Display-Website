@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react"
 import { getMockarooData, getUselessFact, getFirebaseDB } from "../api.js"
-import DataDisplay from "./DataDisplay.jsx"
+import DataDisplay from "../components/DataDisplay.jsx"
 import { useMock } from "../hooks/mockaroo.js";
 
 
@@ -9,25 +9,18 @@ import { useMock } from "../hooks/mockaroo.js";
 // Mockaroo has a limit of 200 requests.
 // Firebase it is then.
 
-export default function Layout() {
-    const [fact, setFact] = useState("");
+export default function MockPage() {
+    
 
     const { items, table } = useMock();  
     console.log(table);
-    useEffect(() => {
-
-        setFact(getUselessFact());
-
-    }, []);
+    
 
 
 
     return (
         <>
             <section>
-                <article>
-                    <h3>{fact}</h3>
-                </article>
                 <div>
                     <DataDisplay
                         title={table}

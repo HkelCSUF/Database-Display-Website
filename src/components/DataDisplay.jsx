@@ -5,38 +5,22 @@ export default function Collapsible({ title, children }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div style={{ border: '1px solid #ccc', borderRadius: '4px', margin: '10px 0' }}>
+    <div className="collapsible">
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
-        style={{
-          width: '100%',
-          padding: '12px',
-          textAlign: 'left',
-          background: '#f5f5f5',
-          border: 'none',
-          cursor: 'pointer',
-          fontWeight: 'bold',
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
+        className="collapsible-toggle"
       >
         <span>{title}</span>
         <span>{isOpen ? '▲' : '▼'}</span>
       </button>
 
       {/* Collapsible Wrapper */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateRows: isOpen ? '1fr' : '0fr',
-          transition: 'grid-template-rows 0.3s ease-out',
-        }}
-      >
+      <div className={`collapsible-panel ${isOpen ? 'open' : ''}`}>
         {/* Content Container */}
-        <div style={{ overflow: 'hidden' }}>
-          <div style={{ padding: '12px' }}>
+        <div className="collapsible-clip">
+          <div className="collapsible-inner">
             {Array.isArray(children) && children.length ? (
               <Table data={children} />
             ) : (
