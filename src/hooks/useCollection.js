@@ -13,7 +13,41 @@ import { db } from "../firebase.js";
 import { useAuth } from "./useAuth.jsx";
 
 export function getCollectionItemId(item) {
-    return `${item.source.toLowerCase()}-${item.id}`;
+
+    if (!item) return "";
+
+    // If a collectionId already exists, use it directly
+    if (item.collectionId) return item.collectionId;
+
+    // Existing code path for items that have a source and id (e.g., external APIs)
+    if (item.source && item.id) {
+        try {
+            return `${String(item.source).toLowerCase()}-${item.id}`;
+        } catch (e) {
+            // fall through to other strategies
+        }
+    }
+
+    // Common fallback fields you might find in mock data
+    const fallbackKeys = ["id", "ID", "uuid", "uid", "email", "name"];
+    for (const k of fallbackKeys) {
+        if (item[k]) return `mock-${String(item[k])}`;
+    }
+
+    // As a last resort, produce a deterministic short hash from the item's JSON
+    try {
+        const str = JSON.stringify(item);
+        // simple string hash (djb2-like) to produce a short deterministic id
+        let h = 5381;
+        for (let i = 0; i < str.length; i++) {
+            h = ((h << 5) + h) + str.charCodeAt(i); /* h * 33 + c */
+            h = h & h; // keep in 32-bit int range
+        }
+        return `obj-${Math.abs(h).toString(36)}`;
+    } catch (e) {
+        // final fallback - random id (should be very rare)
+        return `obj-${Math.random().toString(36).slice(2, 9)}`;
+    }
 }
 
 export function useCollection() {
@@ -35,7 +69,7 @@ export function useCollection() {
 
         const unsubscribe = onSnapshot(collectionQuery, (snapshot) => {
             const savedItems = snapshot.docs.map((movieDoc) => ({
-                collectionId: movieDoc.id,
+                collectionId: movieDoc.table,
                 ...movieDoc.data()
             }));
 
@@ -77,7 +111,7 @@ export function useCollection() {
         // A Firestore document is the closest term to a database record/row.
         // Each user's saved movies live at:
         // users/{currentUser.uid}/collection/{collectionId}
-        const collectionId = item.collectionId || getCollectionItemId(item);
+        const collectionId = item.table || getCollectionItemId(item);
 
         // TODO: Import deleteDoc from firebase/firestore and call:
         const itemRef = doc(db, "users", currentUser.uid, "collection", collectionId); //path to the Firestore document for this movie, see the addToCollection function above for an example of how to get the document reference.

@@ -35,6 +35,8 @@ export default function Table({ data }) {
   );
 }
 
+
+
 // Convert snake_case or camelCase keys to human-friendly headers
 function toHeader(str) {
   // Insert space before capital letters and replace underscores

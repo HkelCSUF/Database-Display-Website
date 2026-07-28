@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 // import LastVisited from "../components/LastVisited.jsx";
-import ResultCard from "../components/ResultCard.jsx";
+// import ResultCard from "../components/ResultCard.jsx";
+import DataDisplay from "../components/DataDisplay.jsx";
 import { useAuth } from "../hooks/useAuth.jsx";
 import { useCollection } from "../hooks/useCollection.js";
 
@@ -16,6 +17,10 @@ export default function CollectionPage() {
         } catch (removeError) {
             console.error("unable to remove", removeError);
         }
+    }
+
+    function getTitle(item) {
+        return item?.title || item?.name || item?.table || item?.collectionId || item?.source || "Collection Item";
     }
 
     console.log(items);
@@ -46,17 +51,16 @@ export default function CollectionPage() {
                 </div>
             </section>
 
-            <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+            <div className="collection-tables">
                 {items.map((item) => (
-                    <ResultCard
-                        key={item.collectionId}
-                        item={item}
-                        action={
-                            <button className="btn btn-outline-danger" type="button" onClick={() => handleRemove(item)}>
-                                Remove from My Collection
-                            </button>
-                        }
-                    />
+                    <div key={item.collectionId} className="mb-4">
+                        <DataDisplay
+                            title={getTitle(item)}
+                            children={item.data}
+                            actionLabel="Remove from My Collection"
+                            onAction={() => handleRemove(item)}
+                        />
+                    </div>
                 ))}
             </div>
             {showRemoveTodoModal && (

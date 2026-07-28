@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Table from './Table';
 
-export default function Collapsible({ title, children }) {
+export default function Collapsible({ title, children, action }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -13,7 +13,7 @@ export default function Collapsible({ title, children }) {
         className="collapsible-toggle"
       >
         <span>{title}</span>
-        <span>{isOpen ? '▲' : '▼'}</span>
+        <span>{isOpen ? '▼' : '▲'}</span>
       </button>
 
       {/* Collapsible Wrapper */}
@@ -28,6 +28,9 @@ export default function Collapsible({ title, children }) {
             )}
           </div>
         </div>
+      </div>
+      <div className="d-flex flex-column flex-sm-row gap-2 mt-auto justify-content-center">
+          {action}
       </div>
     </div>
   );
