@@ -33,7 +33,7 @@ export default function Layout({ children }) {
                             <li className="nav-item"><NavLink className="nav-link" to="/Mock">Mock Data</NavLink></li>
                             <li className="nav-item"><NavLink className="nav-link" to="/about">About</NavLink></li>
                             <li className="nav-item"><NavLink className="nav-link" to="/collection">My Collection</NavLink></li>
-                            <li className="nav-item"><NavLink className="nav-link" to="/contact">Contact Us</NavLink></li>
+                            {/* <li className="nav-item"><NavLink className="nav-link" to="/contact">Contact Us</NavLink></li> */}
                             {currentUser ? (
                                 <li className="nav-item dropdown">
                                     <button className="nav-link dropdown-toggle auth-nav-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">

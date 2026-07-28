@@ -57,8 +57,11 @@ export default function CollectionPage() {
                         <DataDisplay
                             title={getTitle(item)}
                             children={item.data}
-                            actionLabel="Remove from My Collection"
-                            onAction={() => handleRemove(item)}
+                            action={
+                            <button className="btn btn-outline-danger" type="button" onClick={() => handleRemove(item)}>
+                                Remove from My Collection
+                            </button>
+                        }
                         />
                     </div>
                 ))}
